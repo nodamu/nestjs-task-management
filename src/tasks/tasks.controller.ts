@@ -30,6 +30,12 @@ export class TasksController {
   //     return this.tasksService.getAllTasks();
   //   }
   // }
+  @Get()
+  getTasks(
+    @Query(ValidationPipe) filterDto: GetTaskFilterDto,
+  ): Promise<Task[]> {
+    return this.tasksService.getAllTasks(filterDto);
+  }
 
   @Get('/:id')
   getTaskById(@Param('id', ParseIntPipe) id: number): Promise<Task> {
